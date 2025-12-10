@@ -1,13 +1,12 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React from "react";
+import { Text, View } from "react-native";
 
 const Onboarding = () => {
   return (
-    <View>
-      <Text>Onboarding</Text>
+    <View className="flex-1 items-center justify-center bg-[#7952FC]">
+      <Text className="text-3xl font-bold text-white">Evently</Text>
     </View>
-  )
-}
+  );
+};
 
-export default Onboarding
-
+export default Onboarding;

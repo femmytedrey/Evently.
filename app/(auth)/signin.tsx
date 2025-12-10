@@ -4,6 +4,7 @@ import InputField from "@/components/input-field";
 import OAuthButton from "@/components/oauth-button";
 import { Colors } from "@/constants/colors";
 import { authSchema } from "@/schema/auth.schema";
+import { authService } from "@/service/auth.service";
 import { AuthType } from "@/types/auth.type";
 import { Ionicons } from "@expo/vector-icons";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -12,6 +13,7 @@ import { Link, router } from "expo-router";
 import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import {
+  Alert,
   Keyboard,
   KeyboardAvoidingView,
   Platform,
@@ -25,6 +27,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 const SignIn = () => {
   const [isSecure, setIsSecure] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     control,
@@ -41,8 +44,22 @@ const SignIn = () => {
   });
 
   const onSubmit = async (data: AuthType) => {
-    await AsyncStorage.setItem("auth-user", "true");
-    console.log(data);
+    try {
+      setIsLoading(true);
+      const response = await authService.signIn(data);
+
+      await AsyncStorage.setItem("auth-token", response.token);
+      await AsyncStorage.setItem("auth-user", JSON.stringify(response.user));
+
+      router.replace("/");
+    } catch (error) {
+      Alert.alert(
+        "Error",
+        error instanceof Error ? error.message : "Sign in failed"
+      );
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -141,7 +158,11 @@ const SignIn = () => {
                   </View>
                 </View>
 
-                <Button onPress={handleSubmit(onSubmit)} title="Sign In" />
+                <Button
+                  onPress={handleSubmit(onSubmit)}
+                  title={isLoading ? "Singing In..." : "Sign In"}
+                  disabled={isLoading}
+                />
               </View>
 
               {/* alternate auth */}

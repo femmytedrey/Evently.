@@ -5,6 +5,7 @@ import InputField from "@/components/input-field";
 import OAuthButton from "@/components/oauth-button";
 import { Colors } from "@/constants/colors";
 import { authSchema } from "@/schema/auth.schema";
+import { authService } from "@/service/auth.service";
 import { AuthType } from "@/types/auth.type";
 import { Ionicons } from "@expo/vector-icons";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -12,6 +13,7 @@ import { router } from "expo-router";
 import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import {
+  Alert,
   Keyboard,
   KeyboardAvoidingView,
   Platform,
@@ -25,6 +27,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 const SignUp = () => {
   const [isSecure, setIsSecure] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     control,
@@ -39,9 +42,27 @@ const SignUp = () => {
     mode: "onChange",
   });
 
-  const onSubmit = (data: AuthType) => {
-    console.log(data);
-    router.push("/(auth)/otp-verification");
+  const onSubmit = async (data: AuthType) => {
+    try {
+      setIsLoading(true);
+      const response = await authService.signUp(data);
+
+      if (response.requiresVerification) {
+        router.push({
+          pathname: "/(auth)/otp-verification",
+          params: { email: response.user.email },
+        });
+      } else {
+        router.push("/");
+      }
+    } catch (error) {
+      Alert.alert(
+        "Error",
+        error instanceof Error ? error.message : "Sign up failed"
+      );
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -124,7 +145,11 @@ const SignUp = () => {
                   />
                 </View>
 
-                <Button onPress={handleSubmit(onSubmit)} title="Sign Up" />
+                <Button
+                  onPress={handleSubmit(onSubmit)}
+                  title={isLoading ? "Signing Up..." : "Sign Up"}
+                  disabled={isLoading}
+                />
               </View>
 
               {/* alternate auth */}

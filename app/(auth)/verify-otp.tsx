@@ -10,6 +10,18 @@ import { Keyboard, StyleSheet, Text, View } from "react-native";
 import { OtpInput } from "react-native-otp-entry";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+export const verifyOtp = async (otp: string) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (otp === "1234") {
+        resolve({ success: true });
+      } else {
+        reject(new Error("Invalid OTP"));
+      }
+    }, 1500);
+  });
+};
+
 const VerifyOtp = () => {
   const { email } = useLocalSearchParams<{ email: string }>();
   const {
@@ -20,8 +32,25 @@ const VerifyOtp = () => {
     error,
     setCountDown,
     setOtpValue,
-    handleVerify,
+    setError,
+    setIsLoading,
+    setIsSuccess,
   } = useOTPVerification();
+
+  const handleVerify = async () => {
+    try {
+      if (otpValue.length !== 4) return;
+      setError("");
+      setIsLoading(true);
+      await verifyOtp(otpValue);
+      setIsSuccess(true);
+    } catch (error) {
+      setIsLoading(false);
+      setError("Invalid OTP");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   useEffect(() => {
     if (isSuccess && countdown > 0) {

@@ -57,7 +57,7 @@ const CreateNewPassword = () => {
           <MaterialIcons name="verified" size={70} color="#7952FC" />
           <View className="items-center gap-2">
             <Text className="text-2xl font-medium text-gray">
-              Verified Successfully
+              Reset Password Successfully
             </Text>
 
             <Text>Redirecting in {countdown} secs</Text>

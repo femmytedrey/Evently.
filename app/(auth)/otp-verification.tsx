@@ -2,27 +2,19 @@ import AuthHeader from "@/components/auth-header";
 import Button from "@/components/button";
 import OtpSuccess from "@/components/otp-success";
 import { useOTPVerification } from "@/hooks/use-otp-verification";
+import { authService } from "@/service/auth.service";
 import { otpStyles } from "@/styling/otp-styling";
 import { MaterialIcons } from "@expo/vector-icons";
-import { router } from "expo-router";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { router, useLocalSearchParams } from "expo-router";
 import React, { useEffect } from "react";
 import { Keyboard, Text, TouchableWithoutFeedback, View } from "react-native";
 import { OtpInput } from "react-native-otp-entry";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-export const verifyOtp = async (otp: string) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (otp === "1234") {
-        resolve({ success: true });
-      } else {
-        reject(new Error("Invalid OTP"));
-      }
-    }, 1500);
-  });
-};
-
 const OtpVerification = () => {
+  const { email } = useLocalSearchParams<{ email: string }>();
+  
   const {
     otpValue,
     isSuccess,
@@ -31,8 +23,29 @@ const OtpVerification = () => {
     error,
     setCountDown,
     setOtpValue,
-    handleVerify,
+    setError,
+    setIsLoading,
+    setIsSuccess
   } = useOTPVerification();
+
+  const handleVerify = async () => {
+    try {
+      if (otpValue.length !== 4) return;
+      setError("");
+      setIsLoading(true);
+      const response = await authService.verifyOtp(otpValue, email);
+
+      await AsyncStorage.setItem("auth-token", response.token);
+      await AsyncStorage.setItem("auth-user", JSON.stringify(response.user));
+
+      setIsSuccess(response.success);
+    } catch (error) {
+      setIsLoading(false);
+      setError("Invalid OTP");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   useEffect(() => {
     if (isSuccess && countdown > 0) {
