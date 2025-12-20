@@ -6,9 +6,11 @@ import {
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import "react-native-reanimated";
+import Toast from "react-native-toast-message";
 import "../global.css";
 
 import { useColorScheme } from "@/hooks/use-color-scheme";
+import { toastConfig } from "@/utils/toast-config";
 
 // export const unstable_settings = {
 //   anchor: "(tabs)",
@@ -33,6 +35,7 @@ export default function RootLayout() {
           }}
         />
       </Stack>
+      <Toast config={toastConfig} />
       <StatusBar style="auto" />
     </ThemeProvider>
   );

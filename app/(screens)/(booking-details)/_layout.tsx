@@ -23,6 +23,22 @@ const BookingDetailsLayout = () => {
           headerLeft: () => <Back />,
         }}
       />
+      <Stack.Screen
+        name="payment-method"
+        options={{
+          headerShown: true,
+          title: "Payment Method",
+          headerLeft: () => <Back />,
+        }}
+      />
+      <Stack.Screen
+        name="payment-success"
+        options={{
+          headerShown: false,
+          gestureEnabled: false,
+          // headerLeft: () => <Back />,
+        }}
+      />
     </Stack>
   );
 };

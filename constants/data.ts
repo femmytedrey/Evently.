@@ -1,4 +1,4 @@
-import { TicketTypeId } from "@/store/booking.store";
+import { TicketTypeId } from "@/types/bookings.type";
 import { Notification } from "@/types/notification.type";
 import {
   LineSquiggle,
@@ -26,6 +26,7 @@ export interface Event {
   };
   location: string;
   date: {
+    year: number;
     month: string;
     day: number;
   };
@@ -44,7 +45,7 @@ export const events: Event[] = [
     title: "BMTH Tour 2024",
     price: { min: 60.0, max: 300.0 },
     location: "Mandala Krida, Yogyakarta",
-    date: { month: "Aug", day: 12 },
+    date: { year: 2025, month: "Aug", day: 12 },
     image:
       "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=800&q=80",
     category: "music",
@@ -57,7 +58,7 @@ export const events: Event[] = [
         id: "pre-sale-1",
         name: "Pre Sale I",
         price: 25.0,
-        fee: 1.5,
+        fee: 0.15,
         available: 0,
         status: "sold-out",
       },
@@ -65,7 +66,7 @@ export const events: Event[] = [
         id: "pre-sale-2",
         name: "Pre Sale II",
         price: 50.0,
-        fee: 1.5,
+        fee: 0.15,
         available: 542,
         status: "available",
       },
@@ -73,7 +74,7 @@ export const events: Event[] = [
         id: "normal",
         name: "Normal Ticket",
         price: 125.0,
-        fee: 1.5,
+        fee: 0.15,
         available: 1000,
         status: "available",
       },
@@ -84,7 +85,7 @@ export const events: Event[] = [
     title: "Moshing Metal Fest 2024",
     price: { min: 15.0, max: 30.0 },
     location: "Sleman, Yogyakarta",
-    date: { month: "Sep", day: 5 },
+    date: { year: 2025, month: "Sep", day: 5 },
     image:
       "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=800&q=80",
     category: "music",
@@ -97,7 +98,7 @@ export const events: Event[] = [
         id: "pre-sale-1",
         name: "Pre Sale I",
         price: 25.0,
-        fee: 1.5,
+        fee: 0.15,
         available: 0,
         status: "sold-out",
       },
@@ -105,7 +106,7 @@ export const events: Event[] = [
         id: "pre-sale-2",
         name: "Pre Sale II",
         price: 50.0,
-        fee: 1.5,
+        fee: 0.15,
         available: 542,
         status: "available",
       },
@@ -113,7 +114,7 @@ export const events: Event[] = [
         id: "normal",
         name: "Normal Ticket",
         price: 125.0,
-        fee: 1.5,
+        fee: 0.15,
         available: 1000,
         status: "available",
       },
@@ -124,7 +125,7 @@ export const events: Event[] = [
     title: "Bali Food Festival",
     price: { min: 10.0, max: 25.0 },
     location: "Seminyak, Bali",
-    date: { month: "Jul", day: 22 },
+    date: { year: 2025, month: "Jul", day: 22 },
     image:
       "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&q=80",
     category: "festival",
@@ -137,7 +138,7 @@ export const events: Event[] = [
         id: "pre-sale-1",
         name: "Pre Sale I",
         price: 25.0,
-        fee: 1.5,
+        fee: 0.15,
         available: 0,
         status: "sold-out",
       },
@@ -145,7 +146,7 @@ export const events: Event[] = [
         id: "pre-sale-2",
         name: "Pre Sale II",
         price: 50.0,
-        fee: 1.5,
+        fee: 0.15,
         available: 542,
         status: "available",
       },
@@ -153,7 +154,7 @@ export const events: Event[] = [
         id: "normal",
         name: "Normal Ticket",
         price: 125.0,
-        fee: 1.5,
+        fee: 0.15,
         available: 1000,
         status: "available",
       },
@@ -164,7 +165,7 @@ export const events: Event[] = [
     title: "Synchronize Fest 2024",
     price: { min: 25.0, max: 125.0 },
     location: "Yogyakarta",
-    date: { month: "May", day: 20 },
+    date: { year: 2025, month: "May", day: 20 },
     image:
       "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=800&q=80",
     category: "music",
@@ -178,7 +179,7 @@ export const events: Event[] = [
         id: "pre-sale-1",
         name: "Pre Sale I",
         price: 25.0,
-        fee: 1.5,
+        fee: 0.15,
         available: 0,
         status: "sold-out",
       },
@@ -186,7 +187,7 @@ export const events: Event[] = [
         id: "pre-sale-2",
         name: "Pre Sale II",
         price: 50.0,
-        fee: 1.5,
+        fee: 0.15,
         available: 542,
         status: "available",
       },
@@ -194,7 +195,7 @@ export const events: Event[] = [
         id: "normal",
         name: "Normal Ticket",
         price: 125.0,
-        fee: 1.5,
+        fee: 0.15,
         available: 1000,
         status: "available",
       },
@@ -205,7 +206,7 @@ export const events: Event[] = [
     title: "WJNC #9 : Gathering",
     price: { min: 9.95, max: 15.95 },
     location: "Yogyakarta",
-    date: { month: "Oct", day: 7 },
+    date: { year: 2025, month: "Oct", day: 7 },
     image:
       "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&q=80",
     category: "festival",
@@ -219,7 +220,7 @@ export const events: Event[] = [
         id: "pre-sale-1",
         name: "Pre Sale I",
         price: 25.0,
-        fee: 1.5,
+        fee: 0.15,
         available: 0,
         status: "sold-out",
       },
@@ -227,7 +228,7 @@ export const events: Event[] = [
         id: "pre-sale-2",
         name: "Pre Sale II",
         price: 50.0,
-        fee: 1.5,
+        fee: 0.15,
         available: 542,
         status: "available",
       },
@@ -235,7 +236,7 @@ export const events: Event[] = [
         id: "normal",
         name: "Normal Ticket",
         price: 125.0,
-        fee: 1.5,
+        fee: 0.15,
         available: 1000,
         status: "available",
       },
@@ -246,7 +247,7 @@ export const events: Event[] = [
     title: "Jakarta Jazz Festival",
     price: { min: 50.0, max: 200.0 },
     location: "Jakarta",
-    date: { month: "Jun", day: 15 },
+    date: { year: 2025, month: "Jun", day: 15 },
     image:
       "https://images.unsplash.com/photo-1415201364774-f6f0bb35f28f?w=800&q=80",
     category: "music",
@@ -260,7 +261,7 @@ export const events: Event[] = [
         id: "pre-sale-1",
         name: "Pre Sale I",
         price: 25.0,
-        fee: 1.5,
+        fee: 0.15,
         available: 0,
         status: "sold-out",
       },
@@ -268,7 +269,7 @@ export const events: Event[] = [
         id: "pre-sale-2",
         name: "Pre Sale II",
         price: 50.0,
-        fee: 1.5,
+        fee: 0.15,
         available: 542,
         status: "available",
       },
@@ -276,7 +277,7 @@ export const events: Event[] = [
         id: "normal",
         name: "Normal Ticket",
         price: 125.0,
-        fee: 1.5,
+        fee: 0.15,
         available: 1000,
         status: "available",
       },
@@ -287,7 +288,7 @@ export const events: Event[] = [
     title: "Tech Conference Indonesia",
     price: { min: 75.0, max: 250.0 },
     location: "Bali",
-    date: { month: "Aug", day: 22 },
+    date: { year: 2025, month: "Aug", day: 22 },
     image:
       "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80",
     category: "conference",
@@ -301,7 +302,7 @@ export const events: Event[] = [
         id: "pre-sale-1",
         name: "Pre Sale I",
         price: 25.0,
-        fee: 1.5,
+        fee: 0.15,
         available: 0,
         status: "sold-out",
       },
@@ -309,7 +310,7 @@ export const events: Event[] = [
         id: "pre-sale-2",
         name: "Pre Sale II",
         price: 50.0,
-        fee: 1.5,
+        fee: 0.15,
         available: 542,
         status: "available",
       },
@@ -317,7 +318,7 @@ export const events: Event[] = [
         id: "normal",
         name: "Normal Ticket",
         price: 125.0,
-        fee: 1.5,
+        fee: 0.15,
         available: 1000,
         status: "available",
       },
@@ -328,7 +329,7 @@ export const events: Event[] = [
     title: "Bali Food Festival",
     price: { min: 15.0, max: 45.0 },
     location: "Bali",
-    date: { month: "Sep", day: 10 },
+    date: { year: 2025, month: "Sep", day: 10 },
     image:
       "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&q=80",
     category: "festival",
@@ -342,7 +343,7 @@ export const events: Event[] = [
         id: "pre-sale-1",
         name: "Pre Sale I",
         price: 25.0,
-        fee: 1.5,
+        fee: 0.15,
         available: 0,
         status: "sold-out",
       },
@@ -350,7 +351,7 @@ export const events: Event[] = [
         id: "pre-sale-2",
         name: "Pre Sale II",
         price: 50.0,
-        fee: 1.5,
+        fee: 0.15,
         available: 542,
         status: "available",
       },
@@ -358,7 +359,7 @@ export const events: Event[] = [
         id: "normal",
         name: "Normal Ticket",
         price: 125.0,
-        fee: 1.5,
+        fee: 0.15,
         available: 1000,
         status: "available",
       },
@@ -572,5 +573,50 @@ export const DUMMY_NOTIFICATIONS: Notification[] = [
       "How was your experience at 'UX Design Conference'? We'd love to hear your feedback.",
     date: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000), // 5 days ago
     read: true,
+  },
+];
+
+export interface PaymentMethodType {
+  id: string;
+  type: "google-pay" | "apple-pay" | "visa" | "mastercard";
+  name: string;
+  email?: string;
+  cardNumber?: string;
+  balance: number;
+  icon: string;
+}
+
+export const PAYMENT_METHODS: PaymentMethodType[] = [
+  {
+    id: "1",
+    type: "google-pay",
+    name: "Google Pay",
+    email: "p*************n@gmail.com",
+    balance: 1234.0,
+    icon: "https://upload.wikimedia.org/wikipedia/commons/f/f2/Google_Pay_Logo.svg",
+  },
+  {
+    id: "2",
+    type: "apple-pay",
+    name: "Apple Pay",
+    email: "r*************n@gmail.com",
+    balance: 2766.0,
+    icon: "https://upload.wikimedia.org/wikipedia/commons/b/b0/Apple_Pay_logo.svg",
+  },
+  {
+    id: "3",
+    type: "visa",
+    name: "Visa",
+    cardNumber: "**** **** **** 1234",
+    balance: 1876766.0,
+    icon: "https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg",
+  },
+  {
+    id: "4",
+    type: "mastercard",
+    name: "Master Card",
+    cardNumber: "**** **** **** 1234",
+    balance: 221828.21,
+    icon: "https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg",
   },
 ];

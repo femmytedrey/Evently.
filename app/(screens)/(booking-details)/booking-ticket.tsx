@@ -65,9 +65,9 @@ const BookingTicket = () => {
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <SafeAreaView className="flex-1 gap-6 px-5 pt-4" edges={["bottom"]}>
+      <SafeAreaView className="flex-1 gap-6 px-5 " edges={["bottom"]}>
         <View
-          className="gap-4 p-4 bg-white rounded-xl"
+          className="gap-4 p-4 mt-4 bg-white rounded-xl"
           style={{ width: "100%" }}
         >
           <View className="flex-row items-center gap-3">

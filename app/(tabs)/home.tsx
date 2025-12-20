@@ -31,7 +31,7 @@ const Home = () => {
     toggleFavorite,
   } = useEventStore();
 
-  const events = useFilteredEvents({});
+  const events = useFilteredEvents({ includeSearch: true });
 
   const [isLoading, setIsLoading] = useState(false);
   const [loadingUser, setLoadingUser] = useState(true);
