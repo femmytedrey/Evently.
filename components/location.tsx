@@ -1,6 +1,6 @@
 import { Colors } from "@/constants/colors";
 import { popularLocations } from "@/constants/data";
-import * as location from "expo-location";
+import { getCurrentLocation } from "@/utils/location.helper";
 import { ChevronDown, LocateFixed, Search } from "lucide-react-native";
 import React, { useState } from "react";
 import {
@@ -31,33 +31,14 @@ const Location = () => {
   );
 
   // Get GPS location
-  const getCurrentLocation = async () => {
+  const handleGetCurrentLocation = async () => {
     try {
       setLoading(true);
 
-      const { status } = await location.requestForegroundPermissionsAsync();
-
-      if (status !== "granted") {
-        Alert.alert("Permission denied", "Please enable location services");
-        setLoading(false);
-        return;
-      }
-
-      const actualLocation = await location.getCurrentPositionAsync({});
-
-      const address = await location.reverseGeocodeAsync({
-        latitude: actualLocation.coords.latitude,
-        longitude: actualLocation.coords.longitude,
-      });
-
-      if (address[0]) {
-        const locationString = `${address[0].city || address[0].name}, ${
-          address[0].region
-        }`;
-        setCurrentLocation(locationString);
-        setLocationTriggerText("Current Location");
-        setIsModalVisible(false);
-      }
+      const result = await getCurrentLocation();
+      setCurrentLocation(result.address);
+      setLocationTriggerText("Current Location");
+      setIsModalVisible(false);
     } catch (error) {
       console.error(error);
       Alert.alert("Error", "Could not get your location");
@@ -113,7 +94,7 @@ const Location = () => {
             />
 
             <Pressable
-              onPress={getCurrentLocation}
+              onPress={handleGetCurrentLocation}
               className="flex-row items-center gap-2 border-b"
               style={{ paddingBottom: 15, borderColor: "#D5D5DD" }}
               disabled={loading}

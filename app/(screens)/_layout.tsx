@@ -1,28 +1,50 @@
 import Back from "@/components/back";
-import { router, Stack } from "expo-router";
-import { ChevronLeft } from "lucide-react-native";
+import { useUnreadCount } from "@/store/notification.store";
+import { Stack } from "expo-router";
 import React from "react";
-import { Pressable } from "react-native";
+import { Text, View } from "react-native";
 
 const ScreensLayout = () => {
+  const unreadCount = useUnreadCount();
   return (
     <Stack
       screenOptions={{
-        headerShown: true,
+        headerLeft: () => <Back />,
       }}
     >
       <Stack.Screen
         name="notification"
         options={{
           title: "Notifications",
-          headerLeft: () => (
-            <Back />
-          ),
+          // headerLeft: () => <Back />,
+          headerRight: () =>
+            unreadCount > 0 ? (
+              <View className="p-2 px-3 rounded-lg bg-primary">
+                <Text className="text-white">{unreadCount} NEW</Text>
+              </View>
+            ) : null,
           //   headerStyle: {
           //     backgroundColor: "red"
           //   }
         }}
       />
+
+      <Stack.Screen
+        name="upcoming-events"
+        options={{
+          title: "Upcoming Event",
+          // headerLeft: () => <Back />,
+        }}
+      />
+
+      <Stack.Screen
+        name="popular-events"
+        options={{
+          title: "Popular Event",
+        }}
+      />
+
+      <Stack.Screen name="(booking-details)" options={{ headerShown: false }} />
     </Stack>
   );
 };
