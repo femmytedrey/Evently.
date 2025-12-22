@@ -19,4 +19,5 @@ export interface Booking {
   tax: number;
   total: number;
   createdAt: Date;
+  paymentMethod?: string | null;
 }

@@ -18,6 +18,7 @@ interface BookingState {
   getActiveBookings: () => Booking[];
   getPastBookings: () => Booking[];
   getBookingById: (id: string) => Booking | undefined;
+  updateCurrentBookingPaymentMethod: (paymentMethodId: string) => void;
 }
 
 export const useBookingStore = create<BookingState>()(
@@ -53,6 +54,19 @@ export const useBookingStore = create<BookingState>()(
 
         set({ currentBooking: booking, bookings: [...bookings, booking] });
         return bookingId;
+      },
+
+      updateCurrentBookingPaymentMethod: (paymentMethodId: string) => {
+        set((state) => {
+          if (!state.currentBooking) return state;
+
+          return {
+            currentBooking: {
+              ...state.currentBooking,
+              paymentMethod: paymentMethodId,
+            },
+          };
+        });
       },
 
       getActiveBookings: () => {

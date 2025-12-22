@@ -11,6 +11,9 @@ const PaymentMethod = () => {
   const [selectedPaymentId, setSelectedPaymentId] = useState<string>("2");
   const [loading, setLoading] = useState(false);
   const clearBooking = useBookingStore((state) => state.clearBooking);
+  const updatePaymentMethod = useBookingStore(
+    (state) => state.updateCurrentBookingPaymentMethod
+  );
 
   const formatBalance = (balance: number) => {
     return new Intl.NumberFormat("en-US", {
@@ -71,6 +74,8 @@ const PaymentMethod = () => {
 
     try {
       setLoading(true);
+
+      updatePaymentMethod(selectedPaymentId);
 
       await new Promise((resolve) => setTimeout(resolve, 1000));
 

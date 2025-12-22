@@ -46,6 +46,10 @@ const ScreensLayout = () => {
 
       <Stack.Screen name="(booking-details)" options={{ headerShown: false }} />
       <Stack.Screen name="(ticket-details)" options={{ headerShown: false }} />
+      <Stack.Screen
+        name="account-security"
+        options={{ title: "Account Security" }}
+      />
     </Stack>
   );
 };

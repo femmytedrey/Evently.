@@ -1,3 +1,4 @@
+import Back from "@/components/back";
 import { Stack } from "expo-router";
 import React from "react";
 
@@ -6,7 +7,11 @@ const TicketLayout = () => {
     <Stack>
       <Stack.Screen
         name="[id]"
-        options={{ headerShown: true, title: "Detail Ticket" }}
+        options={{
+          headerShown: true,
+          title: "Detail Ticket",
+          headerLeft: () => <Back />,
+        }}
       />
     </Stack>
   );

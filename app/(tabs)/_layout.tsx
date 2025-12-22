@@ -1,4 +1,5 @@
 import { HapticTab } from "@/components/haptic-tab";
+import Logout from "@/components/logout";
 import { Colors } from "@/constants/colors";
 import { Tabs } from "expo-router";
 import { Heart, House, Ticket, User } from "lucide-react-native";
@@ -25,6 +26,7 @@ const MainLayout = () => {
         name="favorite"
         options={{
           title: "Favorite",
+          headerShown: true,
           tabBarIcon: ({ focused, color, size }) => (
             <Heart size={size} color={color} fill={focused ? color : "none"} />
           ),
@@ -34,6 +36,7 @@ const MainLayout = () => {
         name="my-ticket"
         options={{
           title: "My Ticket",
+          headerShown: true,
           tabBarIcon: ({ color, size }) => <Ticket color={color} size={size} />,
         }}
       />
@@ -41,9 +44,11 @@ const MainLayout = () => {
         name="profile"
         options={{
           title: "Profile",
+          headerShown: true,
           tabBarIcon: ({ color, size, focused }) => (
             <User size={size} color={color} fill={focused ? color : "none"} />
           ),
+          headerRight: () => <Logout />,
         }}
       />
     </Tabs>

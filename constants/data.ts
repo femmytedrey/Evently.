@@ -39,6 +39,16 @@ export interface Event {
   ticketTypes: TicketType[];
 }
 
+export interface PaymentMethodType {
+  id: string;
+  type: "google-pay" | "apple-pay" | "visa" | "mastercard";
+  name: string;
+  email?: string;
+  cardNumber?: string;
+  balance: number;
+  icon: string;
+}
+
 export const events: Event[] = [
   {
     id: "4",
@@ -575,16 +585,6 @@ export const DUMMY_NOTIFICATIONS: Notification[] = [
     read: true,
   },
 ];
-
-export interface PaymentMethodType {
-  id: string;
-  type: "google-pay" | "apple-pay" | "visa" | "mastercard";
-  name: string;
-  email?: string;
-  cardNumber?: string;
-  balance: number;
-  icon: string;
-}
 
 export const PAYMENT_METHODS: PaymentMethodType[] = [
   {

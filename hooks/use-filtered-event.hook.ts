@@ -6,12 +6,14 @@ interface UseFilteredEventsProps {
   section?: "popular" | "upcoming";
   limit?: number;
   includeSearch?: boolean;
+  favoritesOnly?: boolean;
 }
 
 export const useFilteredEvents = ({
   section,
   limit,
   includeSearch = false,
+  favoritesOnly = false,
 }: UseFilteredEventsProps = {}) => {
   const events = useEventStore((state) => state.events);
   const categories = useEventStore((state) => state.categories);
@@ -20,6 +22,11 @@ export const useFilteredEvents = ({
 
   const filteredEvents = useMemo(() => {
     let filtered = events;
+
+    if (favoritesOnly) {
+      filtered = filtered.filter((e) => e.favorite === true);
+    }
+
 
     if (section) {
       filtered = filtered.filter((e) => e.section === section);

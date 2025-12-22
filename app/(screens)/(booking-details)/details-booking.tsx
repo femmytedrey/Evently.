@@ -1,3 +1,4 @@
+import PricingSummary from "@/components/pricing-summary";
 import { Colors } from "@/constants/colors";
 import { useBookingStore } from "@/store/booking.store";
 import { Image } from "expo-image";
@@ -88,24 +89,7 @@ const DetailsBooking = () => {
             </View>
           </View>
 
-          <View className="gap-6 p-5 bg-white rounded-2xl">
-            <View className="flex-row items-center justify-between">
-              <Text className="text-lg text-gray-500">Subtotal</Text>
-              <Text className="text-lg text-secondary">{`$${currentBooking.subtotal}`}</Text>
-            </View>
-            <View className="flex-row items-center justify-between">
-              <Text className="text-lg text-gray-500">Fees</Text>
-              <Text className="text-lg text-secondary">{`$${currentBooking.fees}`}</Text>
-            </View>
-            <View className="flex-row items-center justify-between">
-              <Text className="text-lg text-gray-500">Tax (4%)</Text>
-              <Text className="text-lg text-secondary">{`$${currentBooking.tax}`}</Text>
-            </View>
-            <View className="flex-row items-center justify-between">
-              <Text className="text-lg text-gray-500">Total</Text>
-              <Text className="text-lg text-secondary">{`$${currentBooking.total}`}</Text>
-            </View>
-          </View>
+          <PricingSummary booking={currentBooking} />
         </View>
       </ScrollView>
       <View className="px-5 mt-5">

@@ -8,15 +8,23 @@ module.exports = {
     scheme: "evently",
     userInterfaceStyle: "automatic",
     newArchEnabled: true,
+    extra: {
+      eas: {
+        projectId: "d9f35899-f3cd-4d6f-b453-6318a606a093",
+      },
+    },
     ios: {
       supportsTablet: true,
     },
     android: {
+      package: "com.femidev.evently",
+      versionCode: 1,
       config: {
         googleMaps: {
           apiKey: process.env.EXPO_PUBLIC_GOOGLE_MAPS_API_KEY,
         },
       },
+      permissions: ["ACCESS_COARSE_LOCATION", "ACCESS_FINE_LOCATION"],
       adaptiveIcon: {
         backgroundColor: "#E6F4FE",
         foregroundImage: "./assets/images/android-icon-foreground.png",
