@@ -12,12 +12,13 @@ const MyTicket = () => {
   const [activeTab, setActiveTab] = useState<"active" | "past">("active");
   const getActiveBookings = useBookingStore((state) => state.getActiveBookings);
   const getPastBookings = useBookingStore((state) => state.getPastBookings);
+  const bookings = useBookingStore((s) => s.bookings);
 
   const activeBookings = useMemo(
     () => getActiveBookings(),
-    [getActiveBookings]
+    [bookings]
   );
-  const pastBookings = useMemo(() => getPastBookings(), [getPastBookings]);
+  const pastBookings = useMemo(() => getPastBookings(), [bookings]);
 
   const displayedBookings =
     activeTab === "active" ? activeBookings : pastBookings;

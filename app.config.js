@@ -6,7 +6,7 @@ module.exports = {
     orientation: "portrait",
     icon: "./assets/images/icon.png",
     scheme: "evently",
-    userInterfaceStyle: "automatic",
+    userInterfaceStyle: "light",
     newArchEnabled: true,
     extra: {
       eas: {
@@ -17,6 +17,10 @@ module.exports = {
       supportsTablet: true,
     },
     android: {
+      permissions: [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION",
+      ],
       package: "com.femidev.evently",
       versionCode: 1,
       config: {
@@ -25,12 +29,12 @@ module.exports = {
         },
       },
       permissions: ["ACCESS_COARSE_LOCATION", "ACCESS_FINE_LOCATION"],
-      adaptiveIcon: {
-        backgroundColor: "#E6F4FE",
-        foregroundImage: "./assets/images/android-icon-foreground.png",
-        backgroundImage: "./assets/images/android-icon-background.png",
-        monochromeImage: "./assets/images/android-icon-monochrome.png",
-      },
+      // adaptiveIcon: {
+      //   backgroundColor: "#7952FC",
+      //   foregroundImage: "./assets/images/android-icon-foreground.png",
+      //   backgroundImage: "./assets/images/android-icon-background.png",
+      //   monochromeImage: "./assets/images/android-icon-monochrome.png",
+      // },
       edgeToEdgeEnabled: true,
       predictiveBackGestureEnabled: false,
     },
@@ -44,11 +48,11 @@ module.exports = {
         "expo-splash-screen",
         {
           image: "./assets/images/splash-icon.png",
-          imageWidth: 200,
+          imageWidth: 72,
           resizeMode: "contain",
-          backgroundColor: "#ffffff",
+          backgroundColor: "#7952FC",
           dark: {
-            backgroundColor: "#000000",
+            backgroundColor: "#7952FC",
           },
         },
       ],
