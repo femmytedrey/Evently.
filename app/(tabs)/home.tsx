@@ -12,7 +12,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { router } from "expo-router";
 import { Bell, Search } from "lucide-react-native";
 import React, { useEffect, useState } from "react";
-import { Pressable, ScrollView, Text, View } from "react-native";
+import { Button, Pressable, ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 type User = {
@@ -146,6 +146,13 @@ const Home = () => {
           title={isLoading ? "Signing Out..." : "Sign Out"}
           disabled={isLoading}
           onPress={handleLogout}
+        /> */}
+
+        {/* <Button
+          title="clear"
+          onPress={async () =>
+            await AsyncStorage.setItem("onboarding-complete", "false")
+          }
         /> */}
       </View>
     </SafeAreaView>

@@ -17,10 +17,6 @@ module.exports = {
       supportsTablet: true,
     },
     android: {
-      permissions: [
-        "ACCESS_COARSE_LOCATION",
-        "ACCESS_FINE_LOCATION",
-      ],
       package: "com.femidev.evently",
       versionCode: 1,
       config: {
@@ -29,12 +25,12 @@ module.exports = {
         },
       },
       permissions: ["ACCESS_COARSE_LOCATION", "ACCESS_FINE_LOCATION"],
-      // adaptiveIcon: {
-      //   backgroundColor: "#7952FC",
-      //   foregroundImage: "./assets/images/android-icon-foreground.png",
-      //   backgroundImage: "./assets/images/android-icon-background.png",
-      //   monochromeImage: "./assets/images/android-icon-monochrome.png",
-      // },
+      adaptiveIcon: {
+        backgroundColor: "#7952FC",
+        foregroundImage: "./assets/images/icon.png",
+        // backgroundImage: "./assets/images/android-icon-background.png",
+        // monochromeImage: "./assets/images/android-icon-monochrome.png",
+      },
       edgeToEdgeEnabled: true,
       predictiveBackGestureEnabled: false,
     },

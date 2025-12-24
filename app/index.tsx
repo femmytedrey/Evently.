@@ -5,15 +5,21 @@ import { StyleSheet, Text, View } from "react-native";
 
 export default function Index() {
   const [isLoading, setIsLoading] = useState(false);
+  const [hasSeenOnboarding, setHasSeenOnboarding] = useState(false);
   const [isAuth, setIsAuth] = useState(false);
 
   useEffect(() => {
-    checkAuth();
+    checkAppState();
   }, []);
 
-  const checkAuth = async () => {
+  const checkAppState = async () => {
     try {
       setIsLoading(true);
+      const onboardingComplete = await AsyncStorage.getItem(
+        "onboarding-complete"
+      );
+      setHasSeenOnboarding(onboardingComplete === "true");
+
       const token = await AsyncStorage.getItem("auth-token");
       setIsAuth(!!token);
     } catch (error) {
@@ -31,6 +37,10 @@ export default function Index() {
         </Text>
       </View>
     );
+  }
+
+  if (!hasSeenOnboarding) {
+    return <Redirect href={"/(onboarding)/onboarding"} />;
   }
 
   if (!isAuth) {

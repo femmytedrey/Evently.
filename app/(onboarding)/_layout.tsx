@@ -3,7 +3,11 @@ import React from "react";
 import { StyleSheet } from "react-native";
 
 const OnboardingLayout = () => {
-  return <Stack />;
+  return (
+    <Stack>
+      <Stack.Screen name="onboarding" options={{ headerShown: false }} />
+    </Stack>
+  );
 };
 
 export default OnboardingLayout;
