@@ -5,6 +5,7 @@ import LottieView from "lottie-react-native";
 import React from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import Onboarding from "react-native-onboarding-swiper";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const OnboardingScreen = () => {
   const handleDone = async () => {
@@ -65,98 +66,100 @@ const OnboardingScreen = () => {
   );
 
   return (
-    <Onboarding
-      onDone={handleDone}
-      onSkip={handleDone}
-      DotComponent={DotComponent}
-      DoneButtonComponent={DoneButton}
-      SkipButtonComponent={SkipButton}
-      NextButtonComponent={NextButton}
-      // bottomBarColor="#FFFFFF"
-      containerStyles={{
-        paddingHorizontal: 20,
-      }}
-      pages={[
-        {
-          backgroundColor: "#FFFFFF",
-          image: (
-            <View style={{ width: 300, height: 300 }}>
-              <LottieView
-                source={require("@/assets/animations/Dance Party.json")}
-                autoPlay
-                loop
-                style={{ width: "100%", height: "100%" }}
-              />
-            </View>
-          ),
-          title: "Discover Amazing Events In Your City",
-          titleStyles: {
-            color: Colors.secondary,
-            fontSize: 28,
-            fontWeight: "600",
-            paddingHorizontal: 20,
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#E6E6E6" }} edges={["bottom"]}>
+      <Onboarding
+        onDone={handleDone}
+        onSkip={handleDone}
+        DotComponent={DotComponent}
+        DoneButtonComponent={DoneButton}
+        SkipButtonComponent={SkipButton}
+        NextButtonComponent={NextButton}
+        bottomBarColor="#E6E6E6"
+        containerStyles={{
+          paddingHorizontal: 20,
+        }}
+        pages={[
+          {
+            backgroundColor: "#FFFFFF",
+            image: (
+              <View style={{ width: 300, height: 300 }}>
+                <LottieView
+                  source={require("@/assets/animations/Dance Party.json")}
+                  autoPlay
+                  loop
+                  style={{ width: "100%", height: "100%" }}
+                />
+              </View>
+            ),
+            title: "Discover Amazing Events In Your City",
+            titleStyles: {
+              color: Colors.secondary,
+              fontSize: 28,
+              fontWeight: "600",
+              paddingHorizontal: 20,
+            },
+            subtitle: "The best events we have prepared for you",
+            subTitleStyles: {
+              color: "#64748B",
+              fontSize: 16,
+              paddingHorizontal: 40,
+            },
           },
-          subtitle: "The best events we have prepared for you",
-          subTitleStyles: {
-            color: "#64748B",
-            fontSize: 16,
-            paddingHorizontal: 40,
+          {
+            backgroundColor: "#FFFFFF",
+            image: (
+              <View style={{ width: 300, height: 300 }}>
+                <LottieView
+                  source={require("@/assets/animations/Marking a Calendar.json")}
+                  autoPlay
+                  loop
+                  style={{ width: "100%", height: "100%" }}
+                />
+              </View>
+            ),
+            title: "Experience The Ultimate Local Event Right",
+            titleStyles: {
+              color: Colors.secondary,
+              fontSize: 28,
+              fontWeight: "600",
+              paddingHorizontal: 20,
+            },
+            subtitle: "Book tickets easily and enjoy unforgettable moments",
+            subTitleStyles: {
+              color: "#64748B",
+              fontSize: 16,
+              paddingHorizontal: 40,
+            },
           },
-        },
-        {
-          backgroundColor: "#FFFFFF",
-          image: (
-            <View style={{ width: 300, height: 300 }}>
-              <LottieView
-                source={require("@/assets/animations/Marking a Calendar.json")}
-                autoPlay
-                loop
-                style={{ width: "100%", height: "100%" }}
-              />
-            </View>
-          ),
-          title: "Experience The Ultimate Local Event Right",
-          titleStyles: {
-            color: Colors.secondary,
-            fontSize: 28,
-            fontWeight: "600",
-            paddingHorizontal: 20,
+          {
+            backgroundColor: "#FFFFFF",
+            image: (
+              <View style={{ width: 300, height: 300 }}>
+                <LottieView
+                  source={require("@/assets/animations/Globe.json")}
+                  autoPlay
+                  loop
+                  style={{ width: "100%", height: "100%" }}
+                />
+              </View>
+            ),
+            title: "Find Events Near You",
+            titleStyles: {
+              color: Colors.secondary,
+              fontSize: 28,
+              fontWeight: "600",
+              paddingHorizontal: 20,
+            },
+            subtitle: "Explore local events happening around you",
+            subTitleStyles: {
+              color: "#64748B",
+              fontSize: 16,
+              paddingHorizontal: 40,
+            },
           },
-          subtitle: "Book tickets easily and enjoy unforgettable moments",
-          subTitleStyles: {
-            color: "#64748B",
-            fontSize: 16,
-            paddingHorizontal: 40,
-          },
-        },
-        {
-          backgroundColor: "#FFFFFF",
-          image: (
-            <View style={{ width: 300, height: 300 }}>
-              <LottieView
-                source={require("@/assets/animations/Globe.json")}
-                autoPlay
-                loop
-                style={{ width: "100%", height: "100%" }}
-              />
-            </View>
-          ),
-          title: "Find Events Near You",
-          titleStyles: {
-            color: Colors.secondary,
-            fontSize: 28,
-            fontWeight: "600",
-            paddingHorizontal: 20,
-          },
-          subtitle: "Explore local events happening around you",
-          subTitleStyles: {
-            color: "#64748B",
-            fontSize: 16,
-            paddingHorizontal: 40,
-          },
-        },
-      ]}
-    />
+        ]}
+      />
+    </SafeAreaView>
   );
 };
 
